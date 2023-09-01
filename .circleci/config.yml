@@ -12,3 +12,28 @@ jobs:
       - run: CI=false yarn run build
       - run: yarn test:coverage
       - run: yarn run lint
+
+
+  deploy_staging:
+    if: github.ref == 'refs/heads/develop'
+    steps:
+      - checkout
+      - run: yarn install
+      - run:
+            name: creating staging build
+            command: CI=false yarn run build:staging
+      - run:
+            name: firebase deploy
+            command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
+
+  deploy_production:
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - checkout
+      - run: yarn install
+      - run:
+            name: creating production build
+            command: CI=false yarn run build:production
+      - run:
+            name: firebase deploy
+            command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting

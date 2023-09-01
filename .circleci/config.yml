@@ -7,7 +7,17 @@ jobs:
           - image:  cimg/node:16.20.0
 
     steps:
+
       - checkout
+      # Download and cache dependencies
+      - restore_cache:
+        keys:
+          - v1-dependencies-{{checksum "package.json"}}
+          # fallback to using the latest cache , if no exact match is found
+          - v1-dependencies-
+
+
+
       - run: yarn install
       - run: CI=false yarn run build
       - run: yarn test:coverage

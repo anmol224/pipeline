@@ -16,7 +16,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:coverage": "yarn test --watchAll=false --coverage",
-    "lint": "eslint --ext .ts,.tsx ./src",
+    "lint": "eslint --ext js,jsx,ts,tsx src/",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

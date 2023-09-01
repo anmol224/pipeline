@@ -12,7 +12,6 @@ jobs:
       - run: CI=false yarn run build
       - run: yarn test:coverage
       - run: yarn run lint
-      - run:
-            name: Firebase Deploy
-            command: firebase deploy --token "$FIREBASE_TOKEN"
+        with:
+          firebaseServiceAccount: '1//0g7TWAXF0z3UmCgYIARAAGBASNwF-L9Irwj-uGnTw5n-zJdlVZJhDUlZSPfXeK2xZQHSPhj7foqo9Jk9duELn_0bq8S9TGIBAfeU'
 

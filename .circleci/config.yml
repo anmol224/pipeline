@@ -14,4 +14,4 @@ jobs:
       - run: yarn run lint
       - run:
             name: Deploy Main to Firebase
-            command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
+            command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN hosting:demoapp-firebase-12

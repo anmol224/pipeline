@@ -39,6 +39,7 @@ jobs:
           command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive --only hosting:<< parameters.env >>
 
 workflows:
+  version: 2
   deployment:
     jobs:
       - deploy_staging:

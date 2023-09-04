@@ -49,7 +49,7 @@ workflows:
       - deploy_staging:
           filters:
             branches:
-              only: develop
+              only: demo
   production:
     jobs:
       - deploy_production:

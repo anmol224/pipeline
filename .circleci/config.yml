@@ -1,10 +1,8 @@
-
-
 version: 2
 jobs:
   build:
     docker:
-          - image:  cimg/node:16.20.0
+      - image: cimg/node:16.20.0
 
     steps:
       - checkout
@@ -12,7 +10,6 @@ jobs:
       - run: CI=false yarn run build
       - run: yarn test:coverage
       - run: yarn run lint
-
 
   deploy_staging:
     parameters:
@@ -23,12 +20,11 @@ jobs:
       - checkout
       - run: yarn install
       - run:
-            name: creating staging build
-            command: CI=false yarn run build:staging
+          name: creating staging build
+          command: CI=false yarn run build:staging
       - run:
-            name: firebase deploy
-
-            command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --non-interactive --only hosting:<< parameters.env >>
+          name: firebase deploy
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive --only hosting:<< parameters.env >>
 
   deploy_production:
     parameters:
@@ -39,13 +35,11 @@ jobs:
       - checkout
       - run: yarn install
       - run:
-            name: creating production build
-            command: CI=false yarn run build:production
+          name: creating production build
+          command: CI=false yarn run build:production
       - run:
-            name: firebase deploy
-            command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --non-interactive --only hosting:<< parameters.env >>
-
-
+          name: firebase deploy
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive --only hosting:<< parameters.env >>
 
 workflows:
   version: 2

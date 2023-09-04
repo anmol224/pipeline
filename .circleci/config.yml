@@ -36,7 +36,16 @@ jobs:
           command: yarn run build
       - run:
           name: firebase deploy
-          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive --only hosting:<< parameters.env >>
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN  --only hosting:demoapp-firebase-12
+
+
+
+
+
+
+
+
+
 
 # workflows:
 #   version: 2

@@ -1,5 +1,18 @@
 {
   "projects": {
     "default": "pipeline-dbe62"
-  }
+  },
+  "targets": {
+    "pipeline-dbe62": {
+      "hosting": {
+        "production": [
+          "pipeline-dbe62"
+        ],
+        "staging": [
+          "demoapp-firebase-12"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

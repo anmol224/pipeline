@@ -15,7 +15,10 @@ jobs:
 
 
   deploy_staging:
-    if: github.ref == 'refs/heads/develop'
+    parameters:
+      env:
+        type: string
+        default: "staging"
     steps:
       - checkout
       - run: yarn install
@@ -24,10 +27,14 @@ jobs:
             command: CI=false yarn run build:staging
       - run:
             name: firebase deploy
-            command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
+
+            command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --non-interactive --only hosting:<< parameters.env >>
 
   deploy_production:
-    if: github.ref == 'refs/heads/main'
+    parameters:
+      env:
+        type: string
+        default: "production"
     steps:
       - checkout
       - run: yarn install
@@ -36,4 +43,22 @@ jobs:
             command: CI=false yarn run build:production
       - run:
             name: firebase deploy
-            command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
+            command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --non-interactive --only hosting:<< parameters.env >>
+
+
+
+workflows:
+  version: 2
+
+  staging:
+    jobs:
+      - deploy_staging:
+          filters:
+            branches:
+              only: develop
+  production:
+    jobs:
+      - deploy_production:
+          filters:
+            branches:
+              only: main

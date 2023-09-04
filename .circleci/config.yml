@@ -36,7 +36,7 @@ jobs:
           command: yarn run build
       - run:
           name: firebase deploy
-          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN  --only hosting:demoapp-firebase-12
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
 
 
 

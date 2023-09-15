@@ -1,6 +1,7 @@
 {
   "projects": {
-    "default": "pipeline-dbe62"
+    "default": "pipeline-dbe62",
+    "staging": "pipeline-dbe62"
   },
   "targets": {
     "marketing-automation-app": {

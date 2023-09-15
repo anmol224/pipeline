@@ -18,7 +18,7 @@ jobs:
         default: "staging"
     filters:
             branches:
-              only:demo
+              only: "demo"
     steps:
       - checkout
       - run: yarn install
@@ -33,7 +33,7 @@ jobs:
         default: "production"
     filters:
             branches:
-              only: main
+              only: "main"
     steps:
       - checkout
       - run: yarn install

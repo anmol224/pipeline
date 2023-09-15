@@ -22,7 +22,7 @@ jobs:
       - run:
           name: creating staging build
           command: yarn run build
-       run:
+      - run:
           name: firebase deploy
           command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
 

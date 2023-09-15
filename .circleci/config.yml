@@ -41,22 +41,16 @@ jobs:
 
 
 
+workflows:
+  version: 2
+  deployment:
+    jobs:
+      - deploy_staging:
+          filters:
+            branches:
+              only: demo
 
-
-
-
-
-
-# workflows:
-#   version: 2
-#   deployment:
-#     jobs:
-#       - deploy_staging:
-#           filters:
-#             branches:
-#               only: demo
-
-#       - deploy_production:
-#           filters:
-#             branches:
-#               only: main
+      - deploy_production:
+          filters:
+            branches:
+              only: main

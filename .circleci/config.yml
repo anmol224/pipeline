@@ -16,9 +16,6 @@ jobs:
       env:
         type: string
         default: "staging"
-    # filters:
-    #         branches:
-    #           only: "demo"
     steps:
       - checkout
       - run: yarn install
@@ -31,9 +28,6 @@ jobs:
       env:
         type: string
         default: "production"
-    # filters:
-    #         branches:
-    #           only: "main"
     steps:
       - checkout
       - run: yarn install

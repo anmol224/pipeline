@@ -11,33 +11,36 @@ jobs:
       - run: yarn test:coverage
       - run: yarn run lint
 
-  # deploy_staging:
-  #   parameters:
-  #     env:
-  #       type: string
-  #       default: "staging"
-  #   steps:
-  #     - checkout
-  #     - run: yarn install
-  #     - run:
-  #         name: creating staging build
-  #         command: yarn run build
-
-
-  deploy_production:
+  deploy_staging:
     parameters:
       env:
         type: string
-        default: "production"
+        default: "staging"
     steps:
       - checkout
       - run: yarn install
       - run:
-          name: creating production build
+          name: creating staging build
           command: yarn run build
-      - run:
+       run:
           name: firebase deploy
-          command: firebase deploy --token=$FIREBASE_TOKEN
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
+
+
+  # deploy_production:
+  #   parameters:
+  #     env:
+  #       type: string
+  #       default: "production"
+  #   steps:
+  #     - checkout
+  #     - run: yarn install
+  #     - run:
+  #         name: creating production build
+  #         command: yarn run build
+  #     - run:
+  #         name: firebase deploy
+  #         command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
 
 
 
